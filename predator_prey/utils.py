@@ -9,7 +9,7 @@ import torch.nn as nn
 # Get a render function
 def get_render_func(venv):
     if hasattr(venv, 'envs'):
-        return venv.envs[0].render
+        return venv.envs[0]._render
     elif hasattr(venv, 'venv'):
         return get_render_func(venv.venv)
     elif hasattr(venv, 'env'):

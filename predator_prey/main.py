@@ -31,7 +31,7 @@ def main(args):
     torch.set_num_threads(1)
     env = [make_env('predator_prey') for _ in range(args['num_processes'])]
     for i in range(args['num_processes']):
-        env[i].seed((args['seed'] + 1) * i)
+        env[i]._seed((args['seed'] + 1) * i)
     name = uuid.uuid4()
     envs = DummyVecEnv(env)
     standardise = RunningMeanStd(shape=1)

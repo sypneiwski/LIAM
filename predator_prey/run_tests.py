@@ -23,7 +23,7 @@ if __name__ == "__main__":
          'eps': [1e-5, ],
          'max_grad_norm': [0.5, ],
          'batch_size': [5],
-         'obs_dim': [14, ],
+         'obs_dim': [16, ],
          'action_dim': [5, ],
          'hidden_dim1': [128],
          'update_episode': [1],
