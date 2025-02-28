@@ -27,6 +27,8 @@ def main(args):
     results = []
     torch.manual_seed(args['seed'])
     torch.cuda.manual_seed_all(args['seed'])
+    if torch.cuda.is_available():
+        torch.cuda.set_device(0)
 
     torch.set_num_threads(1)
     env = [make_env('predator_prey') for _ in range(args['num_processes'])]
