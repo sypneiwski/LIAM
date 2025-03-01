@@ -143,7 +143,7 @@ class Scenario(BaseScenario):
                         entity_pos.append(entity.state.p_pos - agent.state.p_pos)
 
             other_pos = []
-            other_vel = []
+            other_vel = [[0., 0.]]
             for other in world.agents:
                 if other is agent: continue
                 comm.append(other.state.c)
@@ -152,7 +152,8 @@ class Scenario(BaseScenario):
                     other_pos.append([-5.0, -5.0])
                 else:
                     other_pos.append(other.state.p_pos - agent.state.p_pos)
-            return np.concatenate([agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + other_vel)
+            obs = np.concatenate([agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + other_vel)
+            return obs
         else:
             entity_pos = []
             for entity in world.landmarks:
@@ -166,5 +167,5 @@ class Scenario(BaseScenario):
                 other_pos.append(other.state.p_pos - agent.state.p_pos)
                 if not other.adversary:
                     other_vel.append(other.state.p_vel)
-            return np.concatenate([agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + other_vel)
-     
+            obs = np.concatenate([agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + other_vel)
+            return obs
